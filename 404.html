@@ -8,34 +8,25 @@
   <meta name="description" content="This page didn't make the feed. Head back to TheFeedCo's homepage or get in touch.">
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#296e6b">
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <!-- GitHub Pages serves 404.html for ANY missing path, including deep ones,
+       so every relative URL on this page must resolve from the site root.
+       DOMAIN CUTOVER: change href to "/" when inthefeedco.com goes live. -->
+  <base href="/inthefeedco.com/">
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <!-- GitHub Pages serves 404.html for ANY missing path, so the relative
-       stylesheet can 404 on deep URLs. The root-absolute fallback covers the
-       custom domain; the relative link covers username.github.io/repo. One of
-       the two 404s harmlessly. -->
   <link rel="stylesheet" href="./styles.css">
-  <link rel="stylesheet" href="/styles.css">
   <script src="./script.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
+  <!-- No skip link here: the <base> tag would make its #main fragment navigate
+       away, and there are only two focusable elements before main anyway. -->
   <header class="site-header">
     <div class="container-wide nav-inner">
       <a class="logo-lockup" href="./index.html" aria-label="TheFeedCo. — home">
-        <svg class="logo-mark" width="32" height="32" viewBox="0 0 64 64"
-             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TheFeedCo logo">
-          <circle cx="32" cy="32" r="32" fill="#296e6b"/>
-          <path fill="#fafbfb" d="M24 25.5
-            C31 21.1 40 18 51 20
-            C44 26 38 28 34 29
-            C40 31 43 37 39.5 42.5
-            C35.5 48.5 25 50 19.5 44.5
-            C14.5 39.5 16.5 30.2 24 25.5 Z"/>
-        </svg>
+        <img class="logo-mark" src="./assets/logo.png" width="32" height="32" alt="" aria-hidden="true">
         <span class="logo-word">TheFeedCo<span class="logo-dot">.</span></span>
       </a>
       <nav class="site-nav" aria-label="Primary">
@@ -65,10 +56,7 @@
       <div class="footer-grid">
         <div>
           <a class="logo-lockup" href="./index.html" aria-label="TheFeedCo. — home">
-            <svg class="logo-mark" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-              <circle cx="32" cy="32" r="32" fill="#296e6b"/>
-              <path fill="#fafbfb" d="M24 25.5 C31 21.1 40 18 51 20 C44 26 38 28 34 29 C40 31 43 37 39.5 42.5 C35.5 48.5 25 50 19.5 44.5 C14.5 39.5 16.5 30.2 24 25.5 Z"/>
-            </svg>
+            <img class="logo-mark" src="./assets/logo.png" width="40" height="40" alt="" aria-hidden="true">
             <span class="logo-word">TheFeedCo<span class="logo-dot">.</span></span>
           </a>
           <p class="footer-tagline">Just Scale.</p>

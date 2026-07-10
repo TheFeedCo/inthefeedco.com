@@ -23,6 +23,16 @@
     var closeBtn = menu.querySelector('.menu-close');
     var lastFocus = null;
 
+    // Keep keyboard focus inside the open overlay.
+    var trapFocus = function (e) {
+      if (e.key !== 'Tab') { return; }
+      var els = menu.querySelectorAll('a[href], button:not([disabled])');
+      if (!els.length) { return; }
+      var first = els[0], last = els[els.length - 1];
+      if (e.shiftKey && d.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && d.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+
     var openMenu = function () {
       lastFocus = d.activeElement;
       menu.hidden = false;
@@ -32,6 +42,7 @@
       });
       d.body.classList.add('menu-open');
       toggle.setAttribute('aria-expanded', 'true');
+      d.addEventListener('keydown', trapFocus);
       if (closeBtn) { closeBtn.focus(); }
     };
 
@@ -39,6 +50,7 @@
       menu.classList.remove('is-open');
       d.body.classList.remove('menu-open');
       toggle.setAttribute('aria-expanded', 'false');
+      d.removeEventListener('keydown', trapFocus);
       window.setTimeout(function () { menu.hidden = true; }, 230);
       if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
     };
@@ -96,6 +108,21 @@
   if (!form) { return; }
 
   form.setAttribute('novalidate', 'novalidate'); // JS takes over from native validation
+
+  /* Preselect the service the visitor clicked on the services grid
+     (index.html links here with ?interest=social|ads|full-feed). */
+  var interestMap = {
+    'social': 'Social Media Management',
+    'ads': 'Paid Ads Management',
+    'full-feed': 'The Full Feed (both)'
+  };
+  var interestKey = new URLSearchParams(window.location.search).get('interest');
+  if (interestKey && interestMap[interestKey]) {
+    var preselect = form.querySelector(
+      'input[name="interested_in"][value="' + interestMap[interestKey] + '"]'
+    );
+    if (preselect) { preselect.checked = true; }
+  }
 
   var alertBox = d.getElementById('form-alert');
   var submitBtn = form.querySelector('button[type="submit"]');
