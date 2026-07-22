@@ -110,11 +110,11 @@
   form.setAttribute('novalidate', 'novalidate'); // JS takes over from native validation
 
   /* Preselect the service the visitor clicked on the services grid
-     (index.html links here with ?interest=website|ads|full-build). */
+     (index.html links here with ?interest=website|ads|full-funnel). */
   var interestMap = {
     'website': 'Website Creation',
     'ads': 'Paid Ads Management',
-    'full-build': 'The Full Build (both)'
+    'full-funnel': 'The Full Funnel (both)'
   };
   var interestKey = new URLSearchParams(window.location.search).get('interest');
   if (interestKey && interestMap[interestKey]) {
